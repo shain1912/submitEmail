@@ -1,0 +1,288 @@
+@font-face {
+  font-family: 'DungGeunMo';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --mc-dirt: #866043;
+  --mc-dirt-dark: #614530;
+  --mc-grass-top: #5b8731;
+  --mc-grass-side: #74a148;
+  --mc-stone: #7d7d7d;
+  --mc-stone-dark: #555555;
+  --mc-text: #ffffff;
+  --mc-text-shadow: 2px 2px 0 #3f3f3f;
+  --mc-bg: #4a4a4a;
+  
+  --mc-btn-bg: #8b8b8b;
+  --mc-btn-border-light: #ffffff;
+  --mc-btn-border-dark: #373737;
+  --mc-btn-hover: #a0a0a0;
+  
+  --mc-success: #3ab34a;
+  --mc-danger: #e52521;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DungGeunMo', monospace, sans-serif;
+  background-color: var(--mc-bg);
+  /* Dirt texture pattern */
+  background-image: 
+    linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)), 
+    linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
+  background-size: 64px 64px;
+  background-position: 0 0, 32px 32px;
+  color: var(--mc-text);
+  text-shadow: 2px 2px 0 #000;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  color: #ffff55; /* Minecraft Yellow */
+  text-shadow: 4px 4px 0 #3f3f3f, 0px 4px 0 #3f3f3f, 4px 0px 0 #3f3f3f;
+  letter-spacing: 2px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.MC-container {
+  background-color: #c6c6c6; /* Minecraft UI Grey */
+  border: 4px solid;
+  border-color: #ffffff #555555 #555555 #ffffff; /* 3D Box border */
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 500px;
+  color: #3f3f3f;
+  text-shadow: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.MC-container.wide {
+  max-width: 900px;
+}
+
+.MC-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #3f3f3f;
+}
+
+.mc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mc-form label {
+  font-size: 1.1rem;
+}
+
+.mc-input {
+  background-color: #000;
+  color: #fff;
+  border: 4px solid;
+  border-color: #555555 #ffffff #ffffff #555555;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.mc-input:focus {
+  border-color: #555555 #ffff55 #ffff55 #555555;
+}
+
+.otp-input {
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+}
+
+.mc-btn {
+  background-color: var(--mc-btn-bg);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  padding: 12px 20px;
+  border: 4px solid;
+  border-color: var(--mc-btn-border-light) var(--mc-btn-border-dark) var(--mc-btn-border-dark) var(--mc-btn-border-light);
+  cursor: pointer;
+  text-shadow: 2px 2px 0 #3f3f3f;
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.mc-btn:active {
+  border-color: var(--mc-btn-border-dark) var(--mc-btn-border-light) var(--mc-btn-border-light) var(--mc-btn-border-dark);
+  transform: scale(0.98);
+}
+
+.mc-btn:hover:not(:disabled) {
+  background-color: var(--mc-btn-hover);
+}
+
+.mc-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary { background-color: var(--mc-grass-top); border-color: #aed982 #3f5f22 #3f5f22 #aed982; }
+.btn-primary:hover:not(:disabled) { background-color: #74a148; }
+
+.btn-success { background-color: var(--mc-success); border-color: #72e07f #1f6b29 #1f6b29 #72e07f; }
+.btn-success:hover:not(:disabled) { background-color: #4bd85c; }
+
+.btn-danger { background-color: var(--mc-danger); border-color: #ff6b68 #8b110f #8b110f #ff6b68; }
+.btn-danger:hover:not(:disabled) { background-color: #ff3f3b; }
+
+.btn-secondary { background-color: var(--mc-btn-bg); }
+
+.error-msg {
+  color: #e52521;
+  text-shadow: none;
+  font-size: 1rem;
+  margin-top: 5px;
+  background: #ffcccc;
+  padding: 10px;
+  border: 2px solid #e52521;
+}
+
+.success-msg {
+  color: #1f6b29;
+  text-shadow: none;
+  font-size: 1.1rem;
+  margin-top: 5px;
+  background: #d4fcd9;
+  padding: 15px;
+  border: 2px solid #3ab34a;
+  text-align: center;
+}
+
+.mt-2 { margin-top: 10px; }
+.mt-4 { margin-top: 20px; }
+.mb-4 { margin-bottom: 20px; }
+
+/* Status Board Styles */
+.stats-box {
+  display: flex;
+  justify-content: space-around;
+  background: #8b8b8b;
+  border: 4px solid;
+  border-color: #555555 #ffffff #ffffff #555555;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 2px 2px 0 #3f3f3f;
+}
+
+.stat-item strong {
+  font-size: 2rem;
+  margin-top: 5px;
+}
+
+.text-success { color: #55ff55 !important; }
+.text-danger { color: #ff5555 !important; }
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.student-card {
+  background: #8b8b8b;
+  border: 4px solid;
+  border-color: #ffffff #555555 #555555 #ffffff;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.student-card.verified {
+  background: #aed982;
+  border-color: #e2ffbd #74a148 #74a148 #e2ffbd;
+}
+
+.student-status-icon {
+  font-size: 1.5rem;
+}
+
+.student-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.student-name {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 2px 2px 0 #3f3f3f;
+}
+
+.student-id {
+  font-size: 0.9rem;
+  color: #ddd;
+  text-shadow: 1px 1px 0 #3f3f3f;
+}
+
+/* Table styles */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.mc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #000;
+  color: #fff;
+  border: 4px solid #555;
+}
+
+.mc-table th, .mc-table td {
+  padding: 12px;
+  text-align: left;
+  border: 2px solid #555;
+}
+
+.mc-table th {
+  background-color: #373737;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.text-center {
+  text-align: center;
+}
