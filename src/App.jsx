@@ -3,6 +3,7 @@ import StudentLookup from './pages/StudentLookup';
 import VerifyOTP from './pages/VerifyOTP';
 import StatusBoard from './pages/StatusBoard';
 import AdminPage from './pages/AdminPage';
+import minecraftLogo from './assets/minecraft-logo.png';
 
 function App() {
   return (
@@ -14,8 +15,7 @@ function App() {
       </div>
       <div className="app-container">
         <header className="app-header">
-          <h1>⛏️ MINECRAFT SERVER</h1>
-          <p>메타버스 활용 프로젝트 계정 신청 시스템</p>
+          <img src={minecraftLogo} alt="Minecraft Account Application" className="app-logo" />
         </header>
         <main className="app-main">
           <Routes>

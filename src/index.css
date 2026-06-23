@@ -118,6 +118,16 @@ body {
   50% { transform: translateY(-8px) rotate(1deg); }
 }
 
+.app-logo {
+  max-width: 90%;
+  width: 580px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+  animation: bounceTitle 4s ease-in-out infinite;
+}
+
 /* Premium MC Style Box container */
 .MC-container {
   background-color: var(--mc-gui-bg);
