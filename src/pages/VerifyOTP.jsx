@@ -92,6 +92,13 @@ export default function VerifyOTP() {
           {loading ? '확인 중...' : '인증하기'}
         </button>
         {error && <div className="error-msg">{error}</div>}
+        <button 
+          type="button" 
+          onClick={() => navigate('/')} 
+          className="mc-btn btn-danger mt-2"
+        >
+          ❌ 취소 및 학번 재입력
+        </button>
       </form>
     </div>
   );

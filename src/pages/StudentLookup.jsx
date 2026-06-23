@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
+import heroImg from '../assets/hero.png';
 
 export default function StudentLookup() {
   const [studentId, setStudentId] = useState('');
@@ -58,6 +59,7 @@ export default function StudentLookup() {
 
   return (
     <div className="card MC-container">
+      <img src={heroImg} alt="Minecraft" className="mc-hero-banner" />
       <h2>마인크래프트 계정 신청</h2>
       {!student ? (
         <form onSubmit={handleLookup} className="mc-form">
@@ -67,7 +69,7 @@ export default function StudentLookup() {
             type="text"
             value={studentId}
             onChange={(e) => setStudentId(e.target.value)}
-            placeholder="예: 202104177"
+            placeholder="예: 202306112"
             required
             className="mc-input"
           />
@@ -75,15 +77,22 @@ export default function StudentLookup() {
             {loading ? '검색 중...' : '확인'}
           </button>
           {error && <div className="error-msg">{error}</div>}
+          <button 
+            type="button" 
+            onClick={() => navigate('/status')} 
+            className="mc-btn btn-secondary mt-2"
+          >
+            📋 제출 현황 게시판
+          </button>
         </form>
       ) : (
         <div className="student-info">
-          <div className="welcome-text">
+          <div className="welcome-text" style={{ fontSize: '1.25rem', marginBottom: '20px', textAlign: 'center' }}>
             반갑습니다, <strong>{student.name}</strong> 님!
           </div>
           {student.email_verified ? (
             <div className="success-msg">
-              <p>이미 계정 신청이 완료되었습니다.</p>
+              <p style={{ marginBottom: '15px' }}>이미 계정 신청이 완료되었습니다. 🎉</p>
               <button onClick={() => navigate('/status')} className="mc-btn btn-secondary">
                 현황 보기
               </button>
@@ -104,14 +113,25 @@ export default function StudentLookup() {
                 {loading ? '발송 중...' : '인증 코드 받기'}
               </button>
               {error && <div className="error-msg">{error}</div>}
-              <button 
-                type="button" 
-                onClick={() => setStudent(null)} 
-                className="mc-btn btn-danger mt-2"
-                style={{marginTop: '10px'}}
-              >
-                다시 검색
-              </button>
+              
+              <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+                <button 
+                  type="button" 
+                  onClick={() => setStudent(null)} 
+                  className="mc-btn btn-danger"
+                  style={{ flex: 1 }}
+                >
+                  다시 검색
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => navigate('/status')} 
+                  className="mc-btn btn-secondary"
+                  style={{ flex: 1 }}
+                >
+                  현황판
+                </button>
+              </div>
             </form>
           )}
         </div>
@@ -119,3 +139,4 @@ export default function StudentLookup() {
     </div>
   );
 }
+

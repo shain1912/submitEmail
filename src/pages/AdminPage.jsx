@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 
 export default function AdminPage() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchStudents();
@@ -65,49 +67,57 @@ export default function AdminPage() {
     <div className="card MC-container wide">
       <h2>관리자 대시보드</h2>
       
-      <div className="admin-actions mt-4 mb-4" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div className="admin-actions mt-4 mb-4">
         <div>
-          총 <strong>{students.length}</strong>명 중 <strong>{verifiedCount}</strong>명 제출 완료
+          총 <strong>{students.length}</strong>명 중 <strong className="text-success">{verifiedCount}</strong>명 제출 완료
         </div>
-        <button onClick={handleDownloadCSV} className="mc-btn btn-primary" disabled={loading}>
+        <button onClick={handleDownloadCSV} className="mc-btn btn-success" disabled={loading}>
           ⬇️ CSV 다운로드
         </button>
       </div>
 
       {loading ? (
-        <p>로딩 중...</p>
+        <p className="loading-text">로딩 중...</p>
       ) : (
-        <div className="table-responsive">
-          <table className="mc-table">
-            <thead>
-              <tr>
-                <th>학번</th>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>상태</th>
-                <th>인증 일시</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map(s => (
-                <tr key={s.id}>
-                  <td>{s.student_id}</td>
-                  <td>{s.name}</td>
-                  <td>{s.email || '-'}</td>
-                  <td>
-                    {s.email_verified ? (
-                      <span className="text-success">완료</span>
-                    ) : (
-                      <span className="text-danger">미완료</span>
-                    )}
-                  </td>
-                  <td>{s.verified_at ? new Date(s.verified_at).toLocaleString('ko-KR') : '-'}</td>
+        <>
+          <div className="table-responsive">
+            <table className="mc-table">
+              <thead>
+                <tr>
+                  <th>학번</th>
+                  <th>이름</th>
+                  <th>이메일</th>
+                  <th>상태</th>
+                  <th>인증 일시</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {students.map(s => (
+                  <tr key={s.id}>
+                    <td>{s.student_id}</td>
+                    <td>{s.name}</td>
+                    <td>{s.email || '-'}</td>
+                    <td>
+                      {s.email_verified ? (
+                        <span className="text-success">완료</span>
+                      ) : (
+                        <span className="text-danger">미완료</span>
+                      )}
+                    </td>
+                    <td>{s.verified_at ? new Date(s.verified_at).toLocaleString('ko-KR') : '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mc-nav">
+            <button onClick={() => navigate('/')} className="mc-btn btn-primary mc-nav-btn">
+              🏠 메인 페이지로 이동
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
 }
+
