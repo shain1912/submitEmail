@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback: client-side routes (/verify, /status, /admin) resolve on
+# direct load or refresh. Mirrors public/_redirects.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Supabase credentials (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY) are NOT
+# stored here. Vite inlines them at build time, so they must exist as Netlify
+# environment variables. Set them via the dashboard or:
+#   netlify env:set VITE_SUPABASE_URL <url>
+#   netlify env:set VITE_SUPABASE_ANON_KEY <anon-key>
